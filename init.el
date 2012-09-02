@@ -13,7 +13,7 @@
 
 
 ;; Default font
-;; (set-default-font "Monaco 10")
+(set-default-font "Inconsolata 12")
 
 
 ;; make kill-line include the ending newline char
