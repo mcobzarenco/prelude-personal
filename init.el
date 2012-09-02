@@ -2,9 +2,10 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/magit-1.1.1/")
 
-
-
-
+;; Hidding Hidden Files in Emacs dired (M-o to toggle)
+(require 'dired-x)
+(setq dired-omit-files "^\\...+$")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 
 ;; Common clipboard with X applications
@@ -12,7 +13,7 @@
 
 
 ;; Default font
-(set-default-font "Monaco 10")
+;; (set-default-font "Monaco 10")
 
 
 ;; make kill-line include the ending newline char
@@ -51,7 +52,7 @@
 
 ;; Auto-indentation:
 (define-key global-map (kbd "RET") 'newline-and-indent)
-	
+
 
 (global-set-key (kbd "C-x 4") 'make-frame-command)
 (global-set-key (kbd "C-x O") 'other-frame)
@@ -66,7 +67,7 @@
 (global-set-key [f10] 'bookmark-set)
 (global-set-key [f9] 'bookmark-jump)
 
-	
+
 
 (require 'highline)
 (global-highline-mode 1)
