@@ -8,6 +8,10 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 
+;; Goto-line short-cut key
+(global-set-key "\C-l" 'goto-line)
+
+
 ;; Common clipboard with X applications
 (setq x-select-enable-clipboard t)
 
