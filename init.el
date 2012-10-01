@@ -41,6 +41,10 @@
 (setq inhibit-startup-message t)
 
 
+;; fix prompt in shell
+(setenv "PROMPT_COMMAND" "")
+
+
 ;; alias y to yes and n to no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
