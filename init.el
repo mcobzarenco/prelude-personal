@@ -22,6 +22,7 @@
 
 ;; make kill-line include the ending newline char
 (setq kill-whole-line t)
+(global-set-key (kbd "C-k") 'kill-whole-line)
 
 
 (custom-set-variables
@@ -81,7 +82,7 @@
 (global-highline-mode 1)
 
 ;; To customize the background color
-(set-face-background 'highline-face "light goldenrod yellow")
+;; (set-face-background 'highline-face "light goldenrod yellow")
 
 
 (put 'scroll-left 'disabled nil)
