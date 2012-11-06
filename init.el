@@ -77,6 +77,8 @@
 (global-set-key [f9] 'bookmark-jump)
 
 
+(global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
+
 
 (require 'highline)
 (global-highline-mode 1)
