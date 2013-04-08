@@ -17,7 +17,7 @@
 
 
 ;; Default font
-(set-default-font "Inconsolata 12")
+;; (set-default-font "Inconsolata 12")
 
 
 ;; make kill-line include the ending newline char
@@ -78,13 +78,6 @@
 
 
 (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
-
-
-(require 'highline)
-(global-highline-mode 1)
-
-;; To customize the background color
-;; (set-face-background 'highline-face "light goldenrod yellow")
 
 
 (put 'scroll-left 'disabled nil)
