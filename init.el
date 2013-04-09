@@ -76,6 +76,8 @@
 (global-set-key [f10] 'bookmark-set)
 (global-set-key [f9] 'bookmark-jump)
 
+(global-set-key (kbd "C-<left>") 'previous-buffer)
+(global-set-key (kbd "C-<right>") 'next-buffer)
 
 (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 
