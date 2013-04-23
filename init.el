@@ -2,6 +2,8 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/magit-1.1.1/")
 
+(require 'thrift-mode)
+
 ;; Hidding Hidden Files in Emacs dired (M-o to toggle)
 (require 'dired-x)
 (setq dired-omit-files "^\\...+$")
