@@ -1,8 +1,17 @@
 
+;; C-h c  to find out about what a key combination does (also C-h k and C-h K)
+
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/magit-1.1.1/")
 
 (require 'thrift-mode)
+
+(require 'sr-speedbar)
+(global-set-key (kbd "s-s") 'sr-speedbar-toggle)
+(setq sr-speedbar-width-x 30)
+(setq sr-speedbar-console 30)
+(setq sr-speedbar-right-side nil)
+
 
 ;; Hidding Hidden Files in Emacs dired (M-o to toggle)
 (require 'dired-x)
@@ -68,18 +77,24 @@
 (global-set-key (kbd "C-x 4") 'make-frame-command)
 (global-set-key (kbd "C-x O") 'other-frame)
 
-(global-set-key [(super left)] (lambda () (interactive) (other-frame -1)))
-(global-set-key [(super right)] 'other-frame)
-(global-set-key [(super up)] (lambda () (interactive) (other-window -1)))
-(global-set-key [(super down)] 'other-window)
+;; (global-set-key [(super left)] (lambda () (interactive) (other-frame -1)))
+;; (global-set-key [(super right)] 'other-frame)
+;; (global-set-key [(super up)] (lambda () (interactive) (other-window -1)))
+;; (global-set-key [(super down)] 'other-window)
+
+(global-set-key (kbd "M-<left>")  'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
+(global-set-key (kbd "M-<up>")    'windmove-up)
+(global-set-key (kbd "M-<down>")  'windmove-down)
+
 (global-set-key [f5] 'ibuffer)
 
 ;; quick bookmark keys
 (global-set-key [f10] 'bookmark-set)
 (global-set-key [f9] 'bookmark-jump)
 
-(global-set-key (kbd "C-<left>") 'previous-buffer)
-(global-set-key (kbd "C-<right>") 'next-buffer)
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)
 
 (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 
