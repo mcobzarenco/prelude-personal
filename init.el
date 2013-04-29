@@ -11,6 +11,7 @@
 (setq sr-speedbar-right-side nil)
 (setq sr-speedbar-width 30)
 (setq sr-speedbar-console 30)
+(setq sr-speedbar-auto-refresh nil)
 
 
 ;; Hidding Hidden Files in Emacs dired (M-o to toggle)
