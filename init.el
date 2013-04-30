@@ -12,12 +12,26 @@
 (setq sr-speedbar-width 30)
 (setq sr-speedbar-console 30)
 (setq sr-speedbar-auto-refresh nil)
+(setq speedbar-show-unknown-files t)
 
 
 ;; Hidding Hidden Files in Emacs dired (M-o to toggle)
 (require 'dired-x)
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+
+
+;; markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
+;; yaml mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 
 ;; Goto-line short-cut key
