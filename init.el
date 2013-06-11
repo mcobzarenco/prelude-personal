@@ -9,8 +9,8 @@
 (require 'sr-speedbar)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
 (setq sr-speedbar-right-side nil)
-(setq sr-speedbar-width 30)
-(setq sr-speedbar-console 30)
+(setq sr-speedbar-width 40)
+(setq sr-speedbar-console 40)
 (setq sr-speedbar-auto-refresh nil)
 (setq speedbar-show-unknown-files t)
 
@@ -117,3 +117,53 @@
 (put 'scroll-left 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+
+;; To have also a "Windows CUT" alternative to C-k (kill-line) this can be done:
+(defun delete-line () "delete line, take it out of kill ring. bind this func to C-z"
+ (interactive)
+ (setq last-command 'delete-line)
+ (kill-line)
+ (setq kill-ring (cdr kill-ring))
+ (setq kill-ring-yank-pointer kill-ring)
+ (setq last-command 'delete-line)
+)
+(global-set-key (kbd "C-k") 'delete-line)
+;; without setting of last-command 2+ C-zs mess up kill-ring
+
+
+;; dark theme:
+ (set-face-attribute 'default nil
+                     :background "grey20"
+                     :foreground "grey90")
+
+ (set-face-attribute 'modeline nil
+                     :background "grey10"
+                     :foreground "grey90")
+
+ (set-face-attribute 'cursor nil
+                     :background "white")
+
+ (set-face-attribute 'font-lock-builtin-face nil
+                     :foreground "grey60")
+
+ (set-face-attribute 'font-lock-comment-face nil
+                     :foreground "grey60")
+
+ (set-face-attribute 'font-lock-constant-face nil
+                     :foreground "grey60")
+
+ (set-face-attribute 'font-lock-keyword-face nil
+                     :foreground "white")
+
+ (set-face-attribute 'font-lock-string-face nil
+                     :foreground "white")
+
+ (set-face-attribute 'font-lock-variable-name-face nil
+                     :foreground "lightblue")
+
+ (set-face-attribute 'font-lock-function-name-face nil
+                     :foreground "lightblue")
+
+ (set-face-attribute 'region nil
+                     :background "#111")
