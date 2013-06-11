@@ -137,9 +137,9 @@
                      :background "grey20"
                      :foreground "grey90")
 
- (set-face-attribute 'modeline nil
-                     :background "grey10"
-                     :foreground "grey90")
+ ;; (set-face-attribute 'modeline nil
+ ;;                     :background "grey10"
+ ;;                     :foreground "grey90")
 
  (set-face-attribute 'cursor nil
                      :background "white")
