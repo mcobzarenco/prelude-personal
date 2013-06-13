@@ -1,8 +1,14 @@
-
 ;; C-h c  to find out about what a key combination does (also C-h k and C-h K)
 
-(add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/magit-1.1.1/")
+(add-to-list 'load-path "~/.emacs.d/personal/modules/")
+;; (add-to-list 'load-path "magit-1.1.1/")
+
+;; enable arrow keys
+;; (setq prelude-guru nil)
+
+;; setup jedi (auto-completion in python)
+(add-hook 'prelude-python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 (require 'thrift-mode)
 
@@ -22,11 +28,10 @@
 
 
 ;; markdown mode
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;;(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
 ;; yaml mode
@@ -35,7 +40,7 @@
 
 
 ;; Goto-line short-cut key
-(global-set-key "\C-l" 'goto-line)
+;; (global-set-key "\C-l" 'goto-line)
 
 
 ;; Common clipboard with X applications
@@ -65,7 +70,7 @@
 
 
 ;; disable startup message
-(setq inhibit-startup-message t)
+;; (setq inhibit-startup-message t)
 
 
 ;; fix prompt in shell
@@ -73,7 +78,7 @@
 
 
 ;; alias y to yes and n to no
-(defalias 'yes-or-no-p 'y-or-n-p)
+;; (defalias 'yes-or-no-p 'y-or-n-p)
 
 
 ;; show a menu only when running within X (save real estate when in console)
@@ -82,7 +87,7 @@
 
 
 ;; Git support via magit:
-(require 'magit)
+;; (require 'magit)
 
 
 ;; Auto-indentation:
@@ -132,38 +137,4 @@
 ;; without setting of last-command 2+ C-zs mess up kill-ring
 
 
-;; dark theme:
- (set-face-attribute 'default nil
-                     :background "grey20"
-                     :foreground "grey90")
-
- ;; (set-face-attribute 'modeline nil
- ;;                     :background "grey10"
- ;;                     :foreground "grey90")
-
- (set-face-attribute 'cursor nil
-                     :background "white")
-
- (set-face-attribute 'font-lock-builtin-face nil
-                     :foreground "grey60")
-
- (set-face-attribute 'font-lock-comment-face nil
-                     :foreground "grey60")
-
- (set-face-attribute 'font-lock-constant-face nil
-                     :foreground "grey60")
-
- (set-face-attribute 'font-lock-keyword-face nil
-                     :foreground "white")
-
- (set-face-attribute 'font-lock-string-face nil
-                     :foreground "white")
-
- (set-face-attribute 'font-lock-variable-name-face nil
-                     :foreground "lightblue")
-
- (set-face-attribute 'font-lock-function-name-face nil
-                     :foreground "lightblue")
-
- (set-face-attribute 'region nil
-                     :background "#111")
+(provide 'personal)
