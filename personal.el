@@ -1,14 +1,18 @@
 ;; C-h c  to find out about what a key combination does (also C-h k and C-h K)
 
 (add-to-list 'load-path "~/.emacs.d/personal/modules/")
-;; (add-to-list 'load-path "magit-1.1.1/")
 
 ;; enable arrow keys
 ;; (setq prelude-guru nil)
 
+
+;; disable whitespace
+(setq prelude-whitespace nil)
+
 ;; setup jedi (auto-completion in python)
 (add-hook 'prelude-python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+(setq jedi:setup-keys t)
 
 (require 'thrift-mode)
 
@@ -47,6 +51,27 @@
 (setq x-select-enable-clipboard t)
 
 
+;; hide menu-bar, tool-bar, and scroll-bar forever
+;; Hide splash-screen and startup-message
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+
+(defun toggle-fullscreen ()
+  "Toggle full screen on X11"
+  (interactive)
+  (when (eq window-system 'x)
+    (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
+
+(global-set-key [f11] 'toggle-fullscreen)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+
 ;; Default font
 ;; (set-default-font "Inconsolata 12")
 
@@ -56,14 +81,15 @@
 (global-set-key (kbd "C-k") 'kill-whole-line)
 
 
-(custom-set-variables
- '(case-fold-search t)
- '(column-number-mode t)
- '(scroll-bar-mode (quote right))
- '(show-paren-mode t nil (paren))
- '(use-dialog-box nil)
- '(delete-selection-mode t) ;; Delete selected text
-)
+
+;; (custom-set-variables
+;;  '(case-fold-search t)
+;;  '(column-number-mode t)
+;;  '(scroll-bar-mode (quote right))
+;;  '(show-paren-mode t nil (paren))
+;;  '(use-dialog-box nil)
+;;  '(delete-selection-mode t) ;; Delete selected text
+;; )
 
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -74,24 +100,14 @@
 
 
 ;; fix prompt in shell
-(setenv "PROMPT_COMMAND" "")
-
+;; (setenv "PROMPT_COMMAND" "")
 
 ;; alias y to yes and n to no
 ;; (defalias 'yes-or-no-p 'y-or-n-p)
 
 
-;; show a menu only when running within X (save real estate when in console)
-(menu-bar-mode (if window-system 1 -1))
-(if window-system (tool-bar-mode -1))
-
-
-;; Git support via magit:
-;; (require 'magit)
-
-
 ;; Auto-indentation:
-(define-key global-map (kbd "RET") 'newline-and-indent)
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
 
 
 (global-set-key (kbd "C-x 4") 'make-frame-command)
@@ -101,6 +117,8 @@
 ;; (global-set-key [(super right)] 'other-frame)
 ;; (global-set-key [(super up)] (lambda () (interactive) (other-window -1)))
 ;; (global-set-key [(super down)] 'other-window)
+
+(global-unset-key (kbd "M-<left>"))
 
 (global-set-key (kbd "M-<left>")  'windmove-left)
 (global-set-key (kbd "M-<right>") 'windmove-right)
