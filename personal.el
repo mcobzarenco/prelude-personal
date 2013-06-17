@@ -76,6 +76,10 @@
 ;; (set-default-font "Inconsolata 12")
 
 
+;; set forward/backward word to forward/backward symbol, I find it more useful
+(global-set-key [remap forward-word] 'forward-symbol)
+(global-set-key [remap backward-word] (lambda () (interactive) (forward-symbol -1)))
+
 ;; make kill-line include the ending newline char
 (setq kill-whole-line t)
 (global-set-key (kbd "C-k") 'kill-whole-line)
