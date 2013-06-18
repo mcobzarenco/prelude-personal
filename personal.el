@@ -2,9 +2,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/personal/modules/")
 
-;; enable arrow keys
+;; have arrow keys available to reassign
 ;; (setq prelude-guru nil)
-
 
 ;; disable whitespace
 (setq prelude-whitespace nil)
@@ -13,6 +12,7 @@
 (add-hook 'prelude-python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:setup-keys t)
+
 
 (require 'thrift-mode)
 
@@ -106,21 +106,36 @@
 ;; fix prompt in shell
 ;; (setenv "PROMPT_COMMAND" "")
 
-;; alias y to yes and n to no
-;; (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; Some key definitions packaged in a minor mode
+;; such that they override annoying major modes
+;; (from http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs)
 
-;; Auto-indentation:
-;; (define-key global-map (kbd "RET") 'newline-and-indent)
+(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
+(define-key my-keys-minor-mode-map [f5] 'ibuffer)
+
+;; quick bookmark keys
+(define-key my-keys-minor-mode-map [f9] 'bookmark-set)
+(define-key my-keys-minor-mode-map [f10] 'bookmark-jump)
+
+(define-key my-keys-minor-mode-map (kbd "C-M-{") 'previous-buffer)
+(define-key my-keys-minor-mode-map (kbd "C-M-}") 'next-buffer)
+
+(define-key my-keys-minor-mode-map (kbd "C-{") (lambda  () (interactive) (other-window -1)))
+(define-key my-keys-minor-mode-map (kbd "C-}") 'other-window)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " my-keys" 'my-keys-minor-mode-map)
+
+(my-keys-minor-mode 1)
 
 (global-set-key (kbd "C-x 4") 'make-frame-command)
-(global-set-key (kbd "C-x O") 'other-frame)
+;; (global-set-key (kbd "C-x O") 'other-frame)
 
 ;; (global-set-key [(super left)] (lambda () (interactive) (other-frame -1)))
 ;; (global-set-key [(super right)] 'other-frame)
-;; (global-set-key [(super up)] (lambda () (interactive) (other-window -1)))
-;; (global-set-key [(super down)] 'other-window)
 
 (global-unset-key (kbd "M-<left>"))
 
@@ -129,14 +144,6 @@
 (global-set-key (kbd "M-<up>")    'windmove-up)
 (global-set-key (kbd "M-<down>")  'windmove-down)
 
-(global-set-key [f5] 'ibuffer)
-
-;; quick bookmark keys
-(global-set-key [f10] 'bookmark-set)
-(global-set-key [f9] 'bookmark-jump)
-
-(global-set-key (kbd "C-<prior>") 'previous-buffer)
-(global-set-key (kbd "C-<next>") 'next-buffer)
 
 (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 
@@ -158,5 +165,25 @@
 (global-set-key (kbd "C-k") 'delete-line)
 ;; without setting of last-command 2+ C-zs mess up kill-ring
 
+(require 'auto-complete)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(require 'auto-complete-config)
+(ac-config-default)
+
+(require 'auto-complete-clang-async)
+
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/personal/modules/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process)
+  )
+
+(defun my-ac-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+
+(my-ac-config)
 
 (provide 'personal)
+;;; personal.el ends here
