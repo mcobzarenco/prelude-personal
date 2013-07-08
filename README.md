@@ -1,4 +1,4 @@
-emacs-config
+prelude-personal
 ============
 
-My .emacs.d directory
+My .emacs.d/personal directory that I use with Prelude (https://github.com/bbatsov/prelude)
