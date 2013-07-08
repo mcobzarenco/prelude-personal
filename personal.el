@@ -13,6 +13,8 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:setup-keys t)
 
+;; disable flyspell-mode
+(setq prelude-flyspell nil)
 
 (require 'thrift-mode)
 
@@ -131,6 +133,11 @@
 
 (my-keys-minor-mode 1)
 
+(global-unset-key (kbd "C-v"))
+(global-unset-key (kbd "M-v"))
+(global-set-key (kbd "M-p") 'scroll-down-command)
+(global-set-key (kbd "M-n") 'scroll-up-command)
+
 (global-set-key (kbd "C-x 4") 'make-frame-command)
 ;; (global-set-key (kbd "C-x O") 'other-frame)
 
@@ -145,7 +152,7 @@
 (global-set-key (kbd "M-<down>")  'windmove-down)
 
 
-(global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
+;; (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 
 
 (put 'scroll-left 'disabled nil)
@@ -184,6 +191,15 @@
   (global-auto-complete-mode t))
 
 (my-ac-config)
+
+;; (require 'go-autocomplete)
+;; (require 'auto-complete-config)
+;; (define-key ac-mode-map (kbd "C-TAB") 'auto-complete)
+
+;; Date and time in the status bar
+(setq display-time-day-and-date t
+      display-time-24hr-format t)
+(display-time)
 
 (provide 'personal)
 ;;; personal.el ends here
