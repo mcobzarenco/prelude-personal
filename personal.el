@@ -1,30 +1,42 @@
 ;; C-h c  to find out about what a key combination does (also C-h k and C-h K)
 
+;;; Code:
+
 (add-to-list 'load-path "~/.emacs.d/personal/modules/")
 
+
 ;; have arrow keys available to reassign
-;; (setq prelude-guru nil)
+(setq prelude-guru nil)
+
 
 ;; disable whitespace
 (setq prelude-whitespace nil)
+
 
 ;; setup jedi (auto-completion in python)
 (add-hook 'prelude-python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:setup-keys t)
 
+
 ;; disable flyspell-mode
 (setq prelude-flyspell nil)
 
+
 (require 'thrift-mode)
+
 
 (require 'sr-speedbar)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
 (setq sr-speedbar-right-side nil)
 (setq sr-speedbar-width 40)
 (setq sr-speedbar-console 40)
-(setq sr-speedbar-auto-refresh nil)
+;; (setq sr-speedbar-auto-refresh t)
 (setq speedbar-show-unknown-files t)
+
+
+(key-chord-define-global "uu" nil)
+(key-chord-define-global "hh" 'undo-tree-visualize)
 
 
 ;; Hidding Hidden Files in Emacs dired (M-o to toggle)
@@ -200,6 +212,10 @@
 (setq display-time-day-and-date t
       display-time-24hr-format t)
 (display-time)
+
+
+;; HTML editing with web-mode
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 (provide 'personal)
 ;;; personal.el ends here
